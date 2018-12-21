@@ -1,6 +1,12 @@
 import React from 'react'
 import { rhythm } from '../utils/typography'
 import Header from './header';
+import styled from 'styled-components';
+
+const Main = styled.section`
+  max-width: 960px;
+  margin: 30px auto;
+`
 
 class Layout extends React.Component {
   render() {
@@ -8,16 +14,9 @@ class Layout extends React.Component {
     return (
       <>
       <Header location={location}/>
-      <div
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          maxWidth: rhythm(30),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
+      <Main>
         {children}
-      </div>
+      </Main>
       </>
     )
   }

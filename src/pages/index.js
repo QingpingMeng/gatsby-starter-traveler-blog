@@ -6,6 +6,14 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import ArticlePreview from '../components/articlePreview'
 import { rhythm } from '../utils/typography'
+import styled from 'styled-components'
+
+const Section = styled.section`
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr);
+  grid-gap: 30px;
+  margin: 0 30px;
+`
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,15 +23,25 @@ class BlogIndex extends React.Component {
     const siteCoverImageUrl = data.site.siteMetadata.siteCoverImageUrl
 
     return (
-      <Layout location={this.props.location} coverImageUrl={siteCoverImageUrl} title={siteTitle}>
+      <Layout
+        location={this.props.location}
+        coverImageUrl={siteCoverImageUrl}
+        title={siteTitle}
+      >
         <SEO
           title="All posts"
           keywords={['blog', 'gatsby', 'javascript', 'react']}
         />
         {/* <Bio /> */}
-        {posts.map(({ node }) => {
-          return <ArticlePreview node={node} />
-        })}
+        <Section>
+          {posts.map(({ node }) => {
+            return (
+              <>
+                <ArticlePreview key={node.fields.slug} node={node} />
+              </>
+            )
+          })}
+        </Section>
       </Layout>
     )
   }
@@ -50,10 +68,9 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             coverImage {
-              childImageSharp
-              {
-                resize(height:300, width: 800){
-                  src
+              childImageSharp {
+                fluid(maxWidth: 960, maxHeight: 400) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

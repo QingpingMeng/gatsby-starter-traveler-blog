@@ -3,6 +3,10 @@ import { Link as GatsbyLink } from 'gatsby'
 import Image from 'gatsby-image'
 import { rhythm } from '../utils/typography'
 import styled from 'styled-components'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+
 
 const ImageTile = styled.div`
   width: 100%;
@@ -16,24 +20,31 @@ const ImageTile = styled.div`
 
 const Link = styled(GatsbyLink)`
   box-shadow: none;
-  color: #ffffff;
+  color: #000000;
 `
+
+const styles = theme => ({
+  media: {
+    maxHeight: 400,
+  },
+})
+
+const Media = styled(CardMedia)`
+    max-height: 400px;
+`;
 
 const articlePreview = ({ node }) => {
   const title = node.frontmatter.title || node.fields.slug
-  const backgroundImageUrl =
-    node.frontmatter.coverImage.childImageSharp.resize.src
   return (
-    <div key={node.fields.slug}>
-      <ImageTile backgroundImageUrl={backgroundImageUrl}>
-        <h3>
-          <Link to={node.fields.slug}>
-            {title}
-            {node.frontmatter.test}
-          </Link>
-        </h3>
-      </ImageTile>
-    </div>
+    <Card>
+      <Media>
+        <Image fluid={node.frontmatter.coverImage.childImageSharp.fluid} />
+      </Media>
+
+      <CardContent>
+        <Link to={node.fields.slug}>{title}</Link>
+      </CardContent>
+    </Card>
   )
 }
 
