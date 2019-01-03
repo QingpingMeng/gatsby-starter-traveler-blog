@@ -1,18 +1,15 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-
-import Bio from '../components/bio'
+import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import ArticlePreview from '../components/articlePreview'
-import { rhythm } from '../utils/typography'
+import ArticlePreview from '../components/preview'
+import { Section as LayoutSection } from '../components/layout'
 import styled from 'styled-components'
 
-const Section = styled.section`
+const Section = styled(LayoutSection)`
   display: grid;
   grid-template-columns: minmax(250px, 1fr);
   grid-gap: 30px;
-  margin: 0 30px;
 `
 
 class BlogIndex extends React.Component {
@@ -35,11 +32,7 @@ class BlogIndex extends React.Component {
         {/* <Bio /> */}
         <Section>
           {posts.map(({ node }) => {
-            return (
-              <>
-                <ArticlePreview key={node.fields.slug} node={node} />
-              </>
-            )
+            return <ArticlePreview key={node.fields.slug} node={node} />
           })}
         </Section>
       </Layout>

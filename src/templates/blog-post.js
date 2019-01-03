@@ -1,10 +1,25 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-
 import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { rhythm, scale } from '../utils/typography'
+import Image from 'gatsby-image'
+import { Section } from '../components/layout';
+import 'github-markdown-css';
+import styled from 'styled-components';
+
+const MarkdownBody = styled.section`
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+
+  @media (max-width: 767px) {
+		padding: 15px;
+	}
+`;
+
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -14,14 +29,17 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        
         <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} />
+        <MarkdownBody className='markdown-body'>
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
-            ...scale(-1 / 5),
+            // ...scale(-1 / 5),
             display: 'block',
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
+            // marginBottom: rhythm(1),
+            // marginTop: rhythm(-1),
           }}
         >
           {post.frontmatter.date}
@@ -29,7 +47,7 @@ class BlogPostTemplate extends React.Component {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
-            marginBottom: rhythm(1),
+            // marginBottom: rhythm(1),
           }}
         />
         <Bio />
@@ -60,6 +78,7 @@ class BlogPostTemplate extends React.Component {
             }
           </li>
         </ul>
+        </MarkdownBody>
       </Layout>
     )
   }
@@ -82,6 +101,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        coverImage {
+          childImageSharp {
+            fluid(maxWidth: 1920, maxHeight: 500) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     }
   }
