@@ -24,13 +24,13 @@ const StyledToolbar = styled(Toolbar)`
 const header = props => {
   const { location } = props
   const rootPath = `${__PATH_PREFIX__}/`
-  const GatsbyLink = props => <Link to="/" {...props} />;
+  const HomeLink = props => <Link to="/" {...props} />;
 
   const components = [
     <AppBar position="sticky" color="default">
       <StyledToolbar>
-        <Button color="inherit" component={GatsbyLink}>主页</Button>
-        <Button color="inherit">关于</Button>
+        <Button size="large" color="inherit" component={HomeLink}>主页</Button>
+        <Button size="large" color="inherit">关于</Button>
       </StyledToolbar>
     </AppBar>,
   ]
@@ -71,5 +71,4 @@ const headerImageQuery = graphql`
     }
   }
 `
-
 export default header

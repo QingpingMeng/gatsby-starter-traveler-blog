@@ -17,12 +17,10 @@ class BlogIndex extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
-    const siteCoverImageUrl = data.site.siteMetadata.siteCoverImageUrl
 
     return (
       <Layout
         location={this.props.location}
-        coverImageUrl={siteCoverImageUrl}
         title={siteTitle}
       >
         <SEO
@@ -47,7 +45,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        siteCoverImageUrl
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
