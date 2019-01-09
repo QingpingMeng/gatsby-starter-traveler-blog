@@ -25,12 +25,12 @@ const header = props => {
   const { location } = props
   const rootPath = `${__PATH_PREFIX__}/`
   const HomeLink = props => <Link to="/" {...props} />;
-
+  const AboutLink = props => <Link to="/about" {...props} />;
   const components = [
     <AppBar position="sticky" color="default">
       <StyledToolbar>
         <Button size="large" color="inherit" component={HomeLink}>主页</Button>
-        <Button size="large" color="inherit">关于</Button>
+        <Button size="large" color="inherit" component={AboutLink}>关于</Button>
       </StyledToolbar>
     </AppBar>,
   ]

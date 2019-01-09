@@ -32,7 +32,6 @@ const Overlay = styled.div`
   width: 100%;
   z-index: 1;
 `
-
 const articlePreview = ({ node }) => {
   const title = node.frontmatter.title || node.fields.slug
   return (
@@ -40,13 +39,20 @@ const articlePreview = ({ node }) => {
       <Media style={{ position: 'relative' }}>
         <Image fluid={node.frontmatter.coverImage.childImageSharp.fluid} />
         <Overlay>
-          <CardContent style={{ display: 'flex', zIndex: 2, padding: '1.5rem' }}>
-            <Typography style={{flex: 1}} variant="h6" color="default">
-              <b>
-                <Link to={node.fields.slug}>{title}</Link>
-              </b>
+          <CardContent
+            style={{ display: 'flex', zIndex: 2, padding: '1.5rem', color: "#ffffff" }}
+          >
+            <Typography style={{ flex: 1 }} variant="h6" color="inherit">
+              <b>{title}</b>
             </Typography>
-            <Button variant="contained" color="secondary">Read</Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              to={node.fields.slug}
+              component={GatsbyLink}
+            >
+              Read
+            </Button>
           </CardContent>
         </Overlay>
       </Media>
