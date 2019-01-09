@@ -26,7 +26,6 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-
     return (
       <Layout location={this.props.location} title={siteTitle}>
         
@@ -50,7 +49,7 @@ class BlogPostTemplate extends React.Component {
             // marginBottom: rhythm(1),
           }}
         />
-        <Bio />
+        {/* <Bio /> */}
 
         <ul
           style={{
@@ -103,7 +102,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         coverImage {
           childImageSharp {
-            fluid(maxWidth: 1920, maxHeight: 500) {
+            fluid(maxHeight: 800, maxWidth: 1920, cropFocus: CENTER, quality: 100) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

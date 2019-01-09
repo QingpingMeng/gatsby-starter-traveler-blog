@@ -1,6 +1,6 @@
 ---
-title: 第一篇游记
-description: descrititon
+title: Disney Land - Dec 2016
+description: description
 date: "2015-05-01T22:12:03.284Z"
 coverImage: ./cover.jpg
 ---
