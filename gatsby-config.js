@@ -5,8 +5,8 @@ module.exports = {
     description: 'A traveler blog starter based on gatsby-starter-blog.',
     siteUrl: 'https://travel.qingping.me/',
     social: {
-      twitter: 'qingpim'
-    }
+      twitter: 'qingpim',
+    },
   },
   plugins: [
     {
@@ -51,6 +51,26 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    {
+      resolve: `@wapps/gatsby-plugin-material-ui`,
+      options: {
+        theme: {
+          palette: {
+            primary: {
+              dark: '#0097a7',
+              light: '#bdbdbd',
+              main: '#2196f3',
+            },
+            secondary: {
+              main: '#c62828',
+            },
+          },
+          typography: {
+            useNextVariants: true,
+          },
+        },
       },
     },
     `gatsby-plugin-feed`,

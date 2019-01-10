@@ -5,7 +5,6 @@ import SEO from '../components/seo'
 import ArticlePreview from '../components/preview'
 import { Section as LayoutSection } from '../components/layout'
 import styled from 'styled-components'
-import withRoot from '../withRoot';
 
 const Section = styled(LayoutSection)`
   display: grid;
@@ -39,7 +38,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default withRoot(BlogIndex)
+export default BlogIndex
 
 export const pageQuery = graphql`
   query {
