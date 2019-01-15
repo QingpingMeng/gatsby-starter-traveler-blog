@@ -29,8 +29,8 @@ const header = props => {
   const components = [
     <AppBar position="sticky" color="default">
       <StyledToolbar>
-        <Button size="large" color="inherit" component={HomeLink}>主页</Button>
-        <Button size="large" color="inherit" component={AboutLink}>关于</Button>
+        <Button size="large" color="inherit" component={HomeLink}>Home</Button>
+        <Button size="large" color="inherit" component={AboutLink}>About</Button>
       </StyledToolbar>
     </AppBar>,
   ]
@@ -44,7 +44,7 @@ const header = props => {
           gutterBottom={true}
           align="center"
         >
-          世界这么大
+          Going Places
         </Typography>
         <Typography
           gutterBottom={true}
@@ -52,7 +52,7 @@ const header = props => {
           variant="h4"
           align="center"
         >
-          我想去看看
+          I haven’t been everywhere, but it’s on my list
         </Typography>
       </Banner>
     )
