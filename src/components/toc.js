@@ -50,7 +50,7 @@ const buildTable = (closeTable, elements) => {
 export default function TableOfContents({ closeTable, headlines }) {
   return (
     <TableContainer>
-      <Typography variant="h4">目录</Typography>
+      <Typography variant="h4">Table of Contents</Typography>
       {buildTable(closeTable, headlines)}
     </TableContainer>
   )
