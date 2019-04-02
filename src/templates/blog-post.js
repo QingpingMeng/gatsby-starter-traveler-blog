@@ -7,16 +7,27 @@ import 'github-markdown-css'
 import styled from 'styled-components'
 import TableOfContents from '../components/toc'
 import throttle from 'lodash.throttle'
+import Fab from '@material-ui/core/Fab'
+import ViewListIcon from '@material-ui/icons/ViewList'
+import { SwipeableDrawer } from '@material-ui/core'
 
 const MarkdownBody = styled.section`
   box-sizing: border-box;
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 45px;
+  padding: 45px 45px 6rem 45px;
 
   @media (max-width: 767px) {
-    padding: 15px;
+    padding: 15px 15px 6rem 15px;
+  }
+`
+
+const FloatingFab = styled(Fab)`
+  &&& {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
   }
 `
 
@@ -25,31 +36,23 @@ class BlogPostTemplate extends React.Component {
     super(props)
 
     this.state = {
-      sticky: window.scrollY >= 800,
       headlines: [],
+      showDrawer: false,
     }
-    this.scrollThrottle = null
-    this.handleScroll = this.handleScroll.bind(this)
+
+    this.toggleDrawer = this.toggleDrawer.bind(this)
   }
 
-  handleScroll() {
-    this.setState({
-      sticky: window.scrollY >= 900,
+  toggleDrawer(open) {
+    return () => this.setState({
+      showDrawer: open,
     })
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', throttle(this.handleScroll, 100))
     this.setState({
       headlines: document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
     })
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-    if (this.scrollThrottle) {
-      this.scrollThrottle.cancel()
-    }
   }
 
   render() {
@@ -99,11 +102,16 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </MarkdownBody>
-        <TableOfContents
-          sticky={this.state.sticky}
-          headlines={this.state.headlines}
-        />
-        )
+        <FloatingFab onClick={this.toggleDrawer(true)} color="secondary" aria-label="Edit">
+          <ViewListIcon />
+        </FloatingFab>
+        <SwipeableDrawer
+          open={this.state.showDrawer}
+          onOpen={this.toggleDrawer(true)}
+          onClose={this.toggleDrawer(false)}
+        >
+          <TableOfContents closeTable={this.toggleDrawer(false)} headlines={this.state.headlines} />
+        </SwipeableDrawer>
       </Layout>
     )
   }

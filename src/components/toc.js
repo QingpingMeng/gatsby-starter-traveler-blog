@@ -6,23 +6,14 @@ import {
   Typography,
   CardActionArea,
 } from '@material-ui/core'
+import scrollIntoView from 'scroll-into-view-if-needed'
 
-const TableContainer = styled(Card)`
-  position: fixed;
+const TableContainer = styled.div`
   padding: 0.5rem;
-  top: ${props => (props.sticky ? '140px' : '1000px')};
-  right: 200px;
-  max-width: 300px;
-  max-height: 80vh;
-  &&& {
-    overflow-y: auto;
-  }
 `
 
-const CompactCardContent = styled(CardContent)`
-  &&& {
-    padding: 5px 10px;
-  }
+const CompactCardContent = styled.div`
+  padding: 5px 10px;
 `
 
 const TableItem = styled(CardActionArea)`
@@ -31,13 +22,23 @@ const TableItem = styled(CardActionArea)`
   }
 `
 
-const buildTable = elements => {
+const buildTable = (closeTable, elements) => {
   return Array.from(elements).map((element, index) => {
     const level = +element.tagName[1]
     const variants = ['h5', 'h6', 'subtitle1']
     if (level > 3) return
     return (
-      <TableItem onClick={() => element.scrollIntoView({behavior: 'smooth'})} level={+element.tagName[1]}>
+      <TableItem
+        onClick={() => {
+          // closeTable();
+          scrollIntoView(element, {
+            behavior: 'smooth',
+            scrollMode: 'if-needed',
+          })
+          closeTable();
+        }}
+        level={+element.tagName[1]}
+      >
         <CompactCardContent>
           <Typography variant={variants[level]}>{element.innerText}</Typography>
         </CompactCardContent>
@@ -46,11 +47,11 @@ const buildTable = elements => {
   })
 }
 
-export default function TableOfContents({ sticky, headlines }) {
+export default function TableOfContents({ closeTable, headlines }) {
   return (
-    <TableContainer sticky={sticky}>
+    <TableContainer>
       <Typography variant="h4">目录</Typography>
-      {buildTable(headlines)}
+      {buildTable(closeTable, headlines)}
     </TableContainer>
   )
 }
