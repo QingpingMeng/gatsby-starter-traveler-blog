@@ -6939,6 +6939,14 @@ gatsby-remark-copy-linked-files@^2.0.5:
     probe-image-size "^5.0.0"
     unist-util-visit "^1.4.1"
 
+gatsby-remark-images-native-lazy-load@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-images-native-lazy-load/-/gatsby-remark-images-native-lazy-load-1.0.0.tgz#a541e9f8024c66a3e06085769d677f69182f3242"
+  integrity sha512-M6qRqvmwsn+wXznJeuX2TNdGhF6+LJR5wqEV5HcEa0RnsmJVxlZu2Zp1RKxbzHSFHowhhh6Hpsqni7pDja6PWQ==
+  dependencies:
+    chalk "^3.0.0"
+    unist-util-visit "^2.0.1"
+
 gatsby-remark-images@^3.1.42:
   version "3.3.30"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-3.3.30.tgz#a9eb4828eb0a373dcb116de6064e06756e9fd327"
@@ -15033,7 +15041,7 @@ unist-util-visit-parents@^3.0.0:
     "@types/unist" "^2.0.0"
     unist-util-is "^4.0.0"
 
-unist-util-visit@2.0.3, unist-util-visit@^2.0.0, unist-util-visit@^2.0.2:
+unist-util-visit@2.0.3, unist-util-visit@^2.0.0, unist-util-visit@^2.0.1, unist-util-visit@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.3.tgz#c3703893146df47203bb8a9795af47d7b971208c"
   integrity sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==
